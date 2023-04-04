@@ -39,7 +39,7 @@ public class DeckOfCards {
 
     // method to determine whether card1 is higher in value than card2
     public boolean isHigher(String card1, String card2) {
-        String[] values = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+        String[] values = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
         int value1 = Arrays.asList(values).indexOf(card1.split(" ")[0]);
         int value2 = Arrays.asList(values).indexOf(card2.split(" ")[0]);
         return value2 > value1;
