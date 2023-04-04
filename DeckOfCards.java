@@ -8,8 +8,8 @@ public class DeckOfCards {
     // constructor method to initialize a new deck of cards
     public DeckOfCards() {
         deck = new Stack<String>();
-        String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
-        String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+        String[] suits = { "Spades", "Hearts", "Diamonds", "Clubs" };
+        String[] ranks = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
 
         // populate the deck with all possible combinations of suits and ranks
         for (String suit : suits) {
@@ -40,7 +40,7 @@ public class DeckOfCards {
 
     // method to determine whether card1 is higher in value than card2
     public boolean isHigher(String card1, String card2) {
-        String[] values = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
+        String[] values = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
         int value1 = Arrays.asList(values).indexOf(card1.split(" ")[0]);
         int value2 = Arrays.asList(values).indexOf(card2.split(" ")[0]);
         return value2 > value1;
@@ -53,7 +53,10 @@ public class DeckOfCards {
         String currentCard = deck.deal();
         JOptionPane.showMessageDialog(null, "The first card is: " + currentCard);
         while (!deck.deck.isEmpty()) {
-            int option = JOptionPane.showOptionDialog(null, "Current card: " + currentCard + "\nWill the next card be higher or lower?", "Guess the card", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Higher", "Lower"}, null);
+            int option = JOptionPane.showOptionDialog(null,
+                    "Current card: " + currentCard + "\nWill the next card be higher or lower?", "Guess the card",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] { "Higher", "Lower" },
+                    null);
             if (option == JOptionPane.CLOSED_OPTION) {
                 break;
             }
