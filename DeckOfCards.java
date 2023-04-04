@@ -1,4 +1,5 @@
 import java.util.*;
+import javax.swing.*;
 
 public class DeckOfCards {
     private Stack<String> deck;
@@ -47,34 +48,26 @@ public class DeckOfCards {
 
     // main method to run the card game
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         DeckOfCards deck = new DeckOfCards();
         deck.shuffle();
-
-        // deal the first card from the deck
         String currentCard = deck.deal();
-        System.out.println("The first card is: " + currentCard);
-
-        // prompt the user to guess whether the next card will be higher or lower
+        JOptionPane.showMessageDialog(null, "The first card is: " + currentCard);
         while (!deck.deck.isEmpty()) {
-            System.out.print("Will the next card be higher or lower? (h/l): ");
-            String guess = scanner.nextLine();
-            String nextCard = deck.deal();
-
-            // determine whether the guess was correct
-            boolean isHigher = deck.isHigher(currentCard, nextCard);
-            if (isHigher && guess.equalsIgnoreCase("h") || !isHigher && guess.equalsIgnoreCase("l")) {
-                System.out.println("Correct! The next card is: " + nextCard);
-            } else {
-                System.out.println("Sorry, the next card was: " + nextCard);
+            int option = JOptionPane.showOptionDialog(null, "Current card: " + currentCard + "\nWill the next card be higher or lower?", "Guess the card", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Higher", "Lower"}, null);
+            if (option == JOptionPane.CLOSED_OPTION) {
                 break;
             }
-
-            // update currentCard to be the card just dealt
+            String guess = (option == JOptionPane.YES_OPTION) ? "h" : "l";
+            String nextCard = deck.deal();
+            boolean isHigher = deck.isHigher(currentCard, nextCard);
+            if (isHigher && guess.equalsIgnoreCase("h") || !isHigher && guess.equalsIgnoreCase("l")) {
+                JOptionPane.showMessageDialog(null, "Correct! The next card is: " + nextCard);
+            } else {
+                JOptionPane.showMessageDialog(null, "Sorry, the next card was: " + nextCard);
+                break;
+            }
             currentCard = nextCard;
         }
-
-        // print the final score
-        System.out.println("Game over. You correctly guessed " + (deck.cardsDealt - 1) + " cards.");
+        JOptionPane.showMessageDialog(null, "Game over. You correctly guessed " + (deck.cardsDealt - 1) + " cards.");
     }
 }
